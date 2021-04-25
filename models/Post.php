@@ -59,7 +59,6 @@
             $this->author_name = $row['author_name'];
             $this->quote = $row['quote'];
             $this->category_name = $row['category_name'];
-
         }
 
         //create post

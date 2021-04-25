@@ -11,7 +11,7 @@
         */
         
         
-        private $host = ' 	g84t6zfpijzwx08q.cbetxkdyhwsb.us-east-1.rds.amazonaws.com';
+        private $host = 'g84t6zfpijzwx08q.cbetxkdyhwsb.us-east-1.rds.amazonaws.com';
         private $db_name = 'pofqsjx4clotr29u';
         private $username = 'rdycj9qyn2kew2op';
         private $password = 'syo1y3gsrn3jlcm9';

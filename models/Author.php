@@ -6,6 +6,7 @@
 
         public $id;
         public $author;
+        public $authorId;
 
         //constructor
         public function __construct($db) {
@@ -88,5 +89,26 @@
             printf("Error: %s.\n", $stmt->error);
 
             return false;
+        }
+
+        //read single author
+        public function read_single() {
+
+            $query = 'SELECT a.author as author_name,
+            q.id,
+            q.authorId
+            FROM quotes q
+            LEFT JOIN
+            authors a on q.authorId = a.id
+            WHERE q.authorId = ?
+            LIMIT 1';
+
+            
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(1, $this->authorId);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $this->id = $row['id'];
+            $this->author_name = $row['author_name'];
         }
     }

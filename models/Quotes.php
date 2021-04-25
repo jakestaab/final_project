@@ -35,6 +35,31 @@
             return $stmt;
         }
 
+        //get single quote
+        public function read_single() {
+
+            $query = 'SELECT c.category as category_name, a.author as author_name,
+            q.id,
+            q.categoryId,
+            q.quote,
+            q.authorId
+            FROM quotes q
+            LEFT JOIN
+            categories c on q.categoryId = c.id
+            LEFT JOIN
+            authors a on q.authorId = a.id
+            WHERE q.id = ?';
+            
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(1, $this->id);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $this->id = $row['id'];
+            $this->author_name = $row['author_name'];
+            $this->quote = $row['quote'];
+            $this->category_name = $row['category_name'];
+        }
+
         //create post
         public function create() {
             $query = 'INSERT INTO ' . $this->table . '
@@ -115,9 +140,8 @@
             return false;
         }
 
-        //get single quote
-        public function read_single() {
-
+        //get single author quotes
+        public function read_single_author() {
             $query = 'SELECT c.category as category_name, a.author as author_name,
             q.id,
             q.categoryId,
@@ -128,16 +152,54 @@
             categories c on q.categoryId = c.id
             LEFT JOIN
             authors a on q.authorId = a.id
-            WHERE q.id = ?';
+            WHERE authorId = :authorId';
 
-            
             $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(1, $this->id);
+            $stmt->bindParam(':authorId', $this->authorId);
             $stmt->execute();
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            $this->id = $row['id'];
-            $this->author_name = $row['author_name'];
-            $this->quote = $row['quote'];
-            $this->category_name = $row['category_name'];
+
+            return $stmt;
+        }
+
+        //get single category quotes
+        public function read_single_category() {
+            $query = 'SELECT c.category as category_name, a.author as author_name,
+            q.id,
+            q.categoryId,
+            q.quote,
+            q.authorId
+            FROM quotes q
+            LEFT JOIN
+            categories c on q.categoryId = c.id
+            LEFT JOIN
+            authors a on q.authorId = a.id
+            WHERE categoryId = :categoryId';
+
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':categoryId', $this->categoryId);
+            $stmt->execute();
+
+            return $stmt;
+        }
+
+        public function read_category_and_author() {
+            $query = 'SELECT c.category as category_name, a.author as author_name,
+            q.id,
+            q.categoryId,
+            q.quote,
+            q.authorId
+            FROM quotes q
+            LEFT JOIN
+            categories c on q.categoryId = c.id
+            LEFT JOIN
+            authors a on q.authorId = a.id
+            WHERE categoryId = :categoryId AND authorId = :authorId';
+
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':categoryId', $this->categoryId);
+            $stmt->bindParam(':authorId', $this->authorId);
+            $stmt->execute();
+
+            return $stmt;
         }
     }

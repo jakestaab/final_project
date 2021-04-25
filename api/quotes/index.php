@@ -10,9 +10,24 @@
 
     $post = new Quotes($db);
 
-    $result = $post->read();
+    if(isset($_GET['authorId']) && !isset($_GET['categoryId'])) {
+        $post->authorId = $_GET['authorId'];
+        $result = $post->read_single_author();
+    } else if (!isset($_GET['authorId']) && isset($_GET['categoryId'])) {
+        $post->categoryId = $_GET['categoryId'];
+        $result = $post->read_single_category();
+    } else if (isset($_GET['authorId']) && isset($_GET['categoryId'])) {
+        $post->authorId = $_GET['authorId'];
+        $post->categoryId = $_GET['categoryId'];
+        $result = $post->read_category_and_author();
+    } else {
+        $result = $post->read();
+    }
+
+
     $num = $result->rowCount();
 
+    
     if($num > 0) {
         $posts_arr = array();
         $posts_arr['data'] = array();
@@ -24,7 +39,7 @@
                 'id' => $id,
                 'quote' => $quote,
                 'category_name' => $category_name,
-                'author_name' => $author_name
+                'author_name' => $author_name,
             );
 
             // push to "data"
@@ -36,6 +51,6 @@
     } else {
         // No posts
         echo json_encode(
-            array('message' => 'No Posts Found')
+            array('message' => 'No Quotes Found')
         );
     }

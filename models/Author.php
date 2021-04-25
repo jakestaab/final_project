@@ -69,4 +69,24 @@
             printf('Error: %s.\n', $stmt->error);
             return false;
         }
+
+        public function delete() {
+            $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
+
+            $stmt = $this->conn->prepare($query);
+
+            //clean data
+            $this->id = htmlspecialchars(strip_tags($this->id));
+
+            //bind data
+            $stmt->bindParam(':id', $this->id);
+
+            if($stmt->execute()) {
+                return true;
+            }
+
+            printf("Error: %s.\n", $stmt->error);
+
+            return false;
+        }
     }

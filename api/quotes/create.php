@@ -7,24 +7,26 @@
 
 
     include_once '../../config/Database.php';
-    include_once '../../models/Author.php';
+    include_once '../../models/Quotes.php';
 
     $database = new Database();
     $db = $database->connect();
 
-    $post = new Author($db);
+    $post = new Quotes($db);
 
-    //get raw authored data
+    //get raw posted data
     $data = json_decode(file_get_contents('php://input'));
 
-    $post->author = $data->author;
+    $post->categoryId = $data->categoryId;
+    $post->quote = $data->quote;
+    $post->authorId = $data->authorId;
 
     if($post->create()) {
         echo json_encode(
-            array('message' => 'Author Created')
+            array('message' => 'Quote Created')
         );
     } else {
         echo json_encode(
-            array('message' => 'Author Not Created')
+            array('message' => 'Quote Not Created')
         );
     }

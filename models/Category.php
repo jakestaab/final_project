@@ -43,4 +43,29 @@
             printf('Error: %s.\n', $stmt->error);
             return false;
         }
+
+        public function update() {
+            $query = 'UPDATE ' . $this->table . '
+                        SET
+                        category = :category
+                        WHERE
+                        id = :id';
+            $stmt = $this->conn->prepare($query);
+
+            //clean data
+            $this->category = htmlspecialchars(strip_tags($this->category));
+            $this->id = htmlspecialchars(strip_tags($this->id));
+
+            //bind data
+            $stmt->bindParam(':category', $this->category);
+            $stmt->bindParam(':id', $this->id);
+
+            if($stmt->execute()) {
+                return true;
+            }
+
+            //print error if something goes wrong
+            printf('Error: %s.\n', $stmt->error);
+            return false;
+        }
     }

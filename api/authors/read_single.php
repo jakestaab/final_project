@@ -11,10 +11,10 @@
     $post = new Author($db);
 
     //get id
-    $post->authorId = isset($_GET['authorId']) ? $_GET['authorId'] : die();
+    $post->id = isset($_GET['id']) ? $_GET['id'] : die();
 
     //get post
-    $post->read_single();
+    $post->read_single($post->id);
 
     //create array
     $post_arr = array(

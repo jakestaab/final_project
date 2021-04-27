@@ -92,20 +92,20 @@
         }
 
         //read single author
-        public function read_single() {
+        public function read_single($id) {
 
             $query = 'SELECT a.author as author_name,
-            q.id,
+            a.id,
             q.authorId
             FROM quotes q
             LEFT JOIN
             authors a on q.authorId = a.id
-            WHERE q.authorId = ?
+            WHERE q.authorId = :id
             LIMIT 1';
 
             
             $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(1, $this->authorId);
+            $stmt->bindParam(':id', $id);
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             $this->id = $row['id'];

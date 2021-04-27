@@ -11,10 +11,10 @@
     $post = new Category($db);
 
     //get id
-    $post->categoryId = isset($_GET['categoryId']) ? $_GET['categoryId'] : die();
+    $post->id = isset($_GET['id']) ? $_GET['id'] : die();
 
     //get post
-    $post->read_single();
+    $post->read_single($post->id);
 
     //create array
     $post_arr = array(

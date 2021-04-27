@@ -21,6 +21,9 @@
         $post->authorId = $_GET['authorId'];
         $post->categoryId = $_GET['categoryId'];
         $result = $post->read_category_and_author($post->categoryId, $post->authorId);
+    }  else if (isset($_GET['limit'])) {
+        $post->limit = $_GET['limit'];
+        $result = $post->limit_amount($post->limit);
     } else {
         $result = $post->read();
     }

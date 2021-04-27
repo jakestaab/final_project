@@ -26,18 +26,18 @@ if($action == 'list_quotes') {
     $authors = Author::get_authors();
     $categories = Category::get_categories();
 
-    if(isset($_GET['authorId']) && $categoryId == 0) {
+    if(isset($_GET['authorId']) && $authorId != 0 && $categoryId == 0) {
         $post->authorId = $_GET['authorId'];
         $result = $post->read_single_author($authorId);
-    } else if ($authorId == 0 && isset($_GET['categoryId'])) {
+    } else if ($authorId == 0 && isset($_GET['categoryId']) && $categoryId != 0) {
         $post->categoryId = $_GET['categoryId'];
         $result = $post->read_single_category($categoryId);
+    } else if ($categoryId == 0 && $authorId == 0) {
+        $result = $post->read();
     } else if (isset($_GET['authorId']) && isset($_GET['categoryId'])) {
         $post->authorId = $_GET['authorId'];
         $post->categoryId = $_GET['categoryId'];
         $result = $post->read_category_and_author($categoryId, $authorId);
-    } else {
-        $result = $post->read();
     }
 
     $num = $result->rowCount();
@@ -60,6 +60,15 @@ if($action == 'list_quotes') {
             // push to "data"
             array_push($posts_arr['data'], $post_item);
         }
+    } else {
+        $posts_arr['data'] = array();
+        $post_item = array(
+            'id' => '',
+            'quote' => 'No Results',
+            'category_name' => '',
+            'author_name' => '',
+        );
+        array_push($posts_arr['data'], $post_item);
     }
     
     include('view/quotes_list.php');

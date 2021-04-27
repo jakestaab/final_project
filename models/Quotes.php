@@ -10,6 +10,7 @@
         public $categoryId;
         public $author_name;
         public $category_name;
+        public $limit;
 
         //constructor
         public function __construct($db) {
@@ -198,6 +199,27 @@
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':categoryId', $this->categoryId);
             $stmt->bindParam(':authorId', $this->authorId);
+            $stmt->execute();
+
+            return $stmt;
+        }
+
+        //get limited quotes
+        public function limit_amount($limit) {
+            $query = 'SELECT c.category as category_name, a.author as author_name,
+            q.id,
+            q.categoryId,
+            q.quote,
+            q.authorId
+            FROM quotes q
+            LEFT JOIN
+            categories c on q.categoryId = c.id
+            LEFT JOIN
+            authors a on q.authorId = a.id
+            LIMIT :limit';
+
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':limit', $this->limit, PDO::PARAM_INT);
             $stmt->execute();
 
             return $stmt;

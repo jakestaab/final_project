@@ -90,20 +90,20 @@
         }
 
         //read single category
-        public function read_single() {
+        public function read_single($id) {
 
             $query = 'SELECT c.category as category_name,
-            q.id,
+            c.id,
             q.categoryId
             FROM quotes q
             LEFT JOIN
             categories c on q.categoryId = c.id
-            WHERE q.categoryId = ?
+            WHERE c.id = :id
             LIMIT 1';
 
-            
+
             $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(1, $this->categoryId);
+            $stmt->bindParam(':id', $id);
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             $this->id = $row['id'];

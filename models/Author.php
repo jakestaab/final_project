@@ -111,4 +111,15 @@
             $this->id = $row['id'];
             $this->author_name = $row['author_name'];
         }
+
+        public static function get_authors() {
+            $db = Database::getDB();
+            $query = 'SELECT * FROM authors';
+    
+            $stmt = $db->prepare($query);
+            $stmt->execute();
+            $authors = $stmt->fetchAll();
+            $stmt->closeCursor();
+            return $authors;
+        }
     }

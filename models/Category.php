@@ -109,4 +109,15 @@
             $this->id = $row['id'];
             $this->category_name = $row['category_name'];
         }
+
+        public static function get_categories() {
+            $db = Database::getDB();
+            $query = 'SELECT * FROM categories';
+    
+            $stmt = $db->prepare($query);
+            $stmt->execute();
+            $categories = $stmt->fetchAll();
+            $stmt->closeCursor();
+            return $categories;
+        }
     }

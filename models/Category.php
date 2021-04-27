@@ -112,7 +112,8 @@
 
         public static function get_categories() {
             $db = Database::getDB();
-            $query = 'SELECT * FROM categories';
+            $query = 'SELECT * FROM categories
+                        ORDER BY id';
     
             $stmt = $db->prepare($query);
             $stmt->execute();

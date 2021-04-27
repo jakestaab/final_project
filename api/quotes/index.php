@@ -9,17 +9,18 @@
     $db = $database->connect();
 
     $post = new Quotes($db);
+    
 
     if(isset($_GET['authorId']) && !isset($_GET['categoryId'])) {
         $post->authorId = $_GET['authorId'];
-        $result = $post->read_single_author();
+        $result = $post->read_single_author($post->authorId);
     } else if (!isset($_GET['authorId']) && isset($_GET['categoryId'])) {
         $post->categoryId = $_GET['categoryId'];
-        $result = $post->read_single_category();
+        $result = $post->read_single_category($post->categoryId);
     } else if (isset($_GET['authorId']) && isset($_GET['categoryId'])) {
         $post->authorId = $_GET['authorId'];
         $post->categoryId = $_GET['categoryId'];
-        $result = $post->read_category_and_author();
+        $result = $post->read_category_and_author($post->categoryId, $post->authorId);
     } else {
         $result = $post->read();
     }

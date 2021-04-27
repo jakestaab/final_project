@@ -114,7 +114,8 @@
 
         public static function get_authors() {
             $db = Database::getDB();
-            $query = 'SELECT * FROM authors';
+            $query = 'SELECT * FROM authors
+                        ORDER BY id';
     
             $stmt = $db->prepare($query);
             $stmt->execute();

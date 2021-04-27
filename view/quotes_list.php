@@ -11,7 +11,7 @@
         <div class="price_or_year">
                 <form>
                     <input type="hidden" name="action" value="order_by">
-                    <select name="make_id">
+                    <select name="authorId">
                         <option value="0">View All Authors</option>
                         <?php foreach ($authors as $author) { ?>
                             <option value="<?php echo $author['id']; ?>">
@@ -19,7 +19,7 @@
                             </option>
                         <?php } ?>
                     </select>
-                    <select name="type_id">
+                    <select name="categoryId">
                         <option value="0">View All Categories</option>
                         <?php foreach ($categories as $category) { ?>
                             <option value="<?php echo $category['id']; ?>">
@@ -28,8 +28,24 @@
                         <?php } ?>
                     </select>
 
-                    <input class="categoryButton" type="submit" value="Submit" />
+                    <input class="" type="submit" value="Submit" />
                 </form>
             </div>
+
+        <table>
+            <?php foreach($posts_arr['data'] as $r) {
+                $quote = $r['quote'];
+                $author = $r['author_name'];
+                $category = $r['category_name'];
+            ?>
+            <tr>
+                <td><?php echo $quote ?></td>
+            </tr>
+            <tr>
+                <td><?php echo $author ?></td>
+                <td><?php echo $category ?></td>
+            </tr>
+            <?php } ?>
+        </table>
     </body>
 </main>

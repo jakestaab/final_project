@@ -141,7 +141,7 @@
         }
 
         //get single author quotes
-        public function read_single_author() {
+        public function read_single_author($authorId) {
             $query = 'SELECT c.category as category_name, a.author as author_name,
             q.id,
             q.categoryId,
@@ -162,7 +162,7 @@
         }
 
         //get single category quotes
-        public function read_single_category() {
+        public function read_single_category($categoryId) {
             $query = 'SELECT c.category as category_name, a.author as author_name,
             q.id,
             q.categoryId,
@@ -182,7 +182,7 @@
             return $stmt;
         }
 
-        public function read_category_and_author() {
+        public function read_category_and_author($categoryId, $authorId) {
             $query = 'SELECT c.category as category_name, a.author as author_name,
             q.id,
             q.categoryId,

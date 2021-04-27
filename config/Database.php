@@ -20,8 +20,8 @@
         private $password = 'syo1y3gsrn3jlcm9';
         private $conn;
         private static $dsn = 'mysql:host=g84t6zfpijzwx08q.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;dbname=pofqsjx4clotr29u';
-        private static $username1 = 'root';
-        private static $password1 = 'sesame';
+        private static $username1 = 'rdycj9qyn2kew2op';
+        private static $password1 = 'syo1y3gsrn3jlcm9';
         private static $db;
         
 

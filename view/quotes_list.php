@@ -6,9 +6,8 @@
 </head>
 <main>
     <body>
-        <p>test2</p>
-
-        <div class="price_or_year">
+        <h1>QUOTES</h1>
+        <div class="">
                 <form>
                     <input type="hidden" name="action" value="order_by">
                     <select name="authorId">
@@ -39,11 +38,11 @@
                 $category = $r['category_name'];
             ?>
             <tr>
-                <td><?php echo $quote ?></td>
+                <td class="quote"><?php echo $quote ?></td>
             </tr>
             <tr>
-                <td><?php echo $author ?></td>
-                <td><?php echo $category ?></td>
+                <td class="author"><?php echo $author ?></td>
+                <td class="category"><?php echo $category ?></td>
             </tr>
             <?php } ?>
         </table>

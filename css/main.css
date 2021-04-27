@@ -1,0 +1,21 @@
+h1 {
+    color: blue;
+}
+
+.quote {
+    font-weight: bold;
+    font-size: 125%;
+    font-family: arial;
+    color: green;
+    background-color: lightgray;
+    padding: 2%;
+}
+
+.author {
+    font-weight: bold;
+    color: red;
+}
+
+.category {
+    color: blue;
+}

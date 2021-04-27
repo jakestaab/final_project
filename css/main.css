@@ -1,21 +1,45 @@
 h1 {
-    color: blue;
+    color: rgb(114, 2, 2);
 }
 
 .quote {
     font-weight: bold;
     font-size: 125%;
     font-family: arial;
-    color: green;
+    color: rgb(83, 8, 8);
     background-color: lightgray;
     padding: 2%;
 }
 
 .author {
     font-weight: bold;
-    color: red;
+    color: rgb(7, 7, 146);
+    padding-bottom: 3%;
 }
 
 .category {
-    color: blue;
+    color: rgb(0, 0, 0);
+    padding-bottom: 2%;
+    background-color: rgb(173, 173, 173);
+    text-align: center;
+}
+
+#intro h1,
+#intro p {
+    display: inline;
+}
+
+table {
+    table-layout: auto;
+    width: 1000px;
+    height: 100%;
+    border-collapse: collapse;
+}
+
+
+table td {
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 4px;
 }

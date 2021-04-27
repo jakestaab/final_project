@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Quotes</title>
+    <title>JS Quotes</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <main>
     <body>
-        <h1>QUOTES</h1>
+        <div id="intro">
+        <h1 style="font-size: 250%;">Jake Staab's Quotes</h1>
+        <p style="font-size: 75%">(written by other, more famous people)</p>
+        </div><br>
         <div class="">
                 <form>
                     <input type="hidden" name="action" value="order_by">
@@ -39,10 +42,11 @@
             ?>
             <tr>
                 <td class="quote"><?php echo $quote ?></td>
+                <td class="category"><?php echo $category ?></td>
             </tr>
             <tr>
                 <td class="author"><?php echo $author ?></td>
-                <td class="category"><?php echo $category ?></td>
+                
             </tr>
             <?php } ?>
         </table>

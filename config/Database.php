@@ -2,7 +2,7 @@
 
     class Database {
         
-        /*
+        
         private $host = 'localhost';
         private $db_name = 'quotesdb';
         private $username = 'root';
@@ -12,8 +12,9 @@
         private static $username1 = 'root';
         private static $password1 = 'sesame';
         private static $db;
-        */
         
+        
+        /*
         private $host = 'g84t6zfpijzwx08q.cbetxkdyhwsb.us-east-1.rds.amazonaws.com';
         private $db_name = 'pofqsjx4clotr29u';
         private $username = 'rdycj9qyn2kew2op';
@@ -23,7 +24,7 @@
         private static $username1 = 'rdycj9qyn2kew2op';
         private static $password1 = 'syo1y3gsrn3jlcm9';
         private static $db;
-        
+        */
 
 
         public function connect() {

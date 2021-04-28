@@ -1,5 +1,6 @@
 <?php
-//header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json');
 require('./config/database.php');
 require('./models/Author.php');
 require('./models/Category.php');

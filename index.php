@@ -1,5 +1,5 @@
 <?php
-header('Access-Control-Allow-Origin: *');
+//header('Access-Control-Allow-Origin: *');
 require('./config/database.php');
 require('./models/Author.php');
 require('./models/Category.php');

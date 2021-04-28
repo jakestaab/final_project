@@ -4,8 +4,8 @@
     <title>JS Quotes</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
-<main>
-    <body>
+<body>
+    <main>
         <div id="intro">
         <h1 style="font-size: 250%;">Jake Staab's Quotes</h1>
         <p style="font-size: 75%">(written by other, more famous people)</p>
@@ -50,6 +50,6 @@
             </tr>
             <?php } ?>
         </table>
-    </body>
-</main>
+    </main>
+</body>
 </html>

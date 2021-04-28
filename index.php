@@ -1,6 +1,6 @@
 <?php
 header('Access-Control-Allow-Origin: *');
-require('./config/database.php');
+require('./config/Database.php');
 require('./models/Author.php');
 require('./models/Category.php');
 require('./models/Quotes.php');

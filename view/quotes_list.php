@@ -15,17 +15,17 @@
                     <input type="hidden" name="action" value="order_by">
                     <select name="authorId">
                         <option value="0">View All Authors</option>
-                        <?php foreach ($authors as $author) { ?>
-                            <option value="<?php echo $author['id']; ?>">
-                                <?php echo $author['author']; ?>
+                        <?php foreach ($auth_arr['data'] as $a) { ?>
+                            <option value="<?php echo $a['id']; ?>">
+                                <?php echo $a['author']; ?>
                             </option>
                         <?php } ?>
                     </select>
                     <select name="categoryId">
                         <option value="0">View All Categories</option>
-                        <?php foreach ($categories as $category) { ?>
-                            <option value="<?php echo $category['id']; ?>">
-                                <?php echo $category['category']; ?>
+                        <?php foreach ($cat_arr['data'] as $c) { ?>
+                            <option value="<?php echo $c['id']; ?>">
+                                <?php echo $c['category']; ?>
                             </option>
                         <?php } ?>
                     </select>

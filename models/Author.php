@@ -112,15 +112,12 @@
             $this->author_name = $row['author_name'];
         }
 
-        public static function get_authors() {
-            $db = Database::getDB();
+        public function get_authors() {
             $query = 'SELECT * FROM authors
                         ORDER BY id';
     
-            $stmt = $db->prepare($query);
+            $stmt = $this->conn->prepare($query);
             $stmt->execute();
-            $authors = $stmt->fetchAll();
-            $stmt->closeCursor();
-            return $authors;
+            return $stmt;
         }
     }

@@ -110,15 +110,13 @@
             $this->category_name = $row['category_name'];
         }
 
-        public static function get_categories() {
-            $db = Database::getDB();
+        public function get_categories() {
             $query = 'SELECT * FROM categories
                         ORDER BY id';
     
-            $stmt = $db->prepare($query);
+            $stmt = $this->conn->prepare($query);
             $stmt->execute();
-            $categories = $stmt->fetchAll();
-            $stmt->closeCursor();
-            return $categories;
+
+            return $stmt;
         }
     }

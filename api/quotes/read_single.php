@@ -2,8 +2,8 @@
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json');
 
-    include_once '../../config/Database.php';
-    include_once '../../models/Quotes.php';
+    require('../../config/Database.php');
+    require('../../models/Quotes.php');
 
     $database = new Database();
     $db = $database->connect();
@@ -11,7 +11,7 @@
     $post = new Quotes($db);
 
     //get id
-    $post->id = isset($_GET['id']) ? $_GET['id'] : die();
+    $post->id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
     //get post
     $post->read_single();

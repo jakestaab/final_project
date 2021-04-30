@@ -6,8 +6,8 @@
     Access-Control-Allow_Methods, Authorization, X-Requested-With');
 
 
-    include_once '../../config/Database.php';
-    include_once '../../models/Category.php';
+    require('../../config/Database.php');
+    require('../../models/Category.php');
 
     $database = new Database();
     $db = $database->connect();

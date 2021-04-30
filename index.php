@@ -27,24 +27,25 @@ if($action == 'list_quotes') {
     $auth_result = $authors->get_authors();
     $cat_result = $categories->get_categories();
 
+    //dropdown menu logic for index.php
     if(isset($_GET['authorId']) && $authorId != 0 && $categoryId == 0) {
-        $post->authorId = $_GET['authorId'];
+        $post->authorId = filter_input(INPUT_GET, 'authorId', FILTER_VALIDATE_INT);
         $result = $post->read_single_author($authorId);
     } else if ($authorId == 0 && isset($_GET['categoryId']) && $categoryId != 0) {
-        $post->categoryId = $_GET['categoryId'];
+        $post->categoryId = filter_input(INPUT_GET, 'categoryId', FILTER_VALIDATE_INT);
         $result = $post->read_single_category($categoryId);
     } else if ($categoryId == 0 && $authorId == 0) {
         $result = $post->read();
     } else if (isset($_GET['authorId']) && isset($_GET['categoryId'])) {
-        $post->authorId = $_GET['authorId'];
-        $post->categoryId = $_GET['categoryId'];
+        $post->authorId = filter_input(INPUT_GET, 'authorId', FILTER_VALIDATE_INT);
+        $post->categoryId = filter_input(INPUT_GET, 'categoryId', FILTER_VALIDATE_INT);
         $result = $post->read_category_and_author($categoryId, $authorId);
     }
 
-    $num = $result->rowCount();
 
     
-    
+    //creates array to use for displaying quote data in index.php
+    $num = $result->rowCount();
     if($num > 0) {
         $posts_arr = array();
         $posts_arr['data'] = array();
@@ -73,38 +74,36 @@ if($action == 'list_quotes') {
         array_push($posts_arr['data'], $post_item);
     }
 
-    if(true) {
-        $auth_arr = array();
-        $auth_arr['data'] = array();
+    //creates author dropdown array for index.php
+    $auth_arr = array();
+    $auth_arr['data'] = array();
 
-        while($row = $auth_result->fetch(PDO::FETCH_ASSOC)) {
-            extract($row);
+    while($row = $auth_result->fetch(PDO::FETCH_ASSOC)) {
+        extract($row);
 
-            $auth_item = array(
-                'id' => $id,
-                'author' => $author
-            );
+        $auth_item = array(
+            'id' => $id,
+            'author' => $author
+        );
 
-            // push to "data"
-            array_push($auth_arr['data'], $auth_item);
-        }
+        // push to "data"
+        array_push($auth_arr['data'], $auth_item);
     }
 
-    if(true) {
-        $cat_arr = array();
-        $cat_arr['data'] = array();
+    //creates category dropdown array for index.php
+    $cat_arr = array();
+    $cat_arr['data'] = array();
 
-        while($row = $cat_result->fetch(PDO::FETCH_ASSOC)) {
-            extract($row);
+    while($row = $cat_result->fetch(PDO::FETCH_ASSOC)) {
+        extract($row);
 
-            $cat_item = array(
-                'id' => $id,
-                'category' => $category
-            );
+        $cat_item = array(
+            'id' => $id,
+            'category' => $category
+        );
 
-            // push to "data"
-            array_push($cat_arr['data'], $cat_item);
-        }
+        // push to "data"
+        array_push($cat_arr['data'], $cat_item);
     }
     
     include('view/quotes_list.php');
